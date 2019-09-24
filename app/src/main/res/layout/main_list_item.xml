@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/main_list_item_layout"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/main_list_item_background"
+android:padding="23dp"
+android:clickable="true">
+    <TextView
+            android:id="@+id/main_list_item_indexsura"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"
+
+
+            android:layout_centerVertical="true"
+
+
+            android:textSize="15sp"
+    android:layout_alignParentLeft="true"/>
+    <TextView
+            android:id="@+id/main_list_item_namesura"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"
+
+android:layout_marginLeft="40dp"
+            android:textSize="15sp" />
+    <ImageView
+            android:id="@+id/main_list_item_download_icon_sura"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"
+
+
+            android:layout_marginRight="3dp"
+   android:layout_alignParentRight="true"
+    android:layout_centerVertical="true"/>
+
+</RelativeLayout>
