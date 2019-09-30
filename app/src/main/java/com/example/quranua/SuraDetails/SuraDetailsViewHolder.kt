@@ -11,6 +11,7 @@ class SuraDetailsViewHolder(itemview: View):androidx.recyclerview.widget.Recycle
     var ayaukr: TextView =itemview.findViewById(R.id.sura_details_item_aya_ukr)
     var ayaarabik: TextView =itemview.findViewById(R.id.sura_details_item_aya_arabic)
     var addbookmark: ImageView =itemview.findViewById(R.id.sura_details_item_context_menu_bookmark)
+    var ayanumber:TextView=itemview.findViewById(R.id.sura_details_item_aya_number)
     var share: ImageView =itemview.findViewById(R.id.sura_details_item_context_menu_share)
     var container:LinearLayout=itemview.findViewById(R.id.sura_details_container)
     var contextmenu: RelativeLayout =itemview.findViewById(R.id.sura_details_item_context_menu_block)
