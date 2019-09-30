@@ -1,5 +1,5 @@
 # Quran
-##Quran with translation on Ukranian Language
+## Quran with translation on Ukranian Language
 ## Menu
 1. List of Suras
 2. Each sura with arabic and ukranian
