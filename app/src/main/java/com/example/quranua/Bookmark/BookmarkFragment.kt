@@ -20,7 +20,7 @@ class BookmarkFragment: BaseFragment() {
 var db=Database(context!!)
 
 
-        adapter=BookMarkAdapter( db.readdata(),context!!,activity)as RecyclerView.Adapter<RecyclerView.ViewHolder>
+        adapter=BookMarkAdapter( db.readdata("no"),context!!,activity)as RecyclerView.Adapter<RecyclerView.ViewHolder>
         makeListView()
         return view
     }

@@ -17,7 +17,7 @@ import com.example.quranua.SuraDetails.SuraDetailsFragment
 import java.util.*
 import kotlin.collections.ArrayList
 
-class BookMarkAdapter(var bookmark: ArrayList<Bookmark>, var context: Context,var  activity: FragmentActivity?) :
+open class BookMarkAdapter(var bookmark: ArrayList<Bookmark>, var context: Context, var  activity: FragmentActivity?) :
     RecyclerView.Adapter<BookmarkViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BookmarkViewHolder {
         var view = LayoutInflater.from(context).inflate(R.layout.bookmark_item2, parent, false)

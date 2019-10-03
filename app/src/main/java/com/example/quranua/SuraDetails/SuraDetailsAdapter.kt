@@ -6,13 +6,14 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.RelativeLayout
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.quranua.Database
 import com.example.quranua.Model.Sura
 import com.example.quranua.Model.Verse
 import com.example.quranua.R
 
-class SuraDetailsAdapter(
+open class SuraDetailsAdapter(
     var list: ArrayList<Verse>,
     var context: Context,
     var sura: Sura
@@ -39,6 +40,8 @@ class SuraDetailsAdapter(
             previousindex = position
             notifyDataSetChanged()
         }
+        holder.suraheader.visibility=TextView.GONE
+        var db = Database(context)
         if (previousindex == position) {
             holder.contextmenu.visibility = RelativeLayout.VISIBLE
         } else {
@@ -46,9 +49,14 @@ class SuraDetailsAdapter(
         }
         holder.addbookmark.setOnClickListener {
             Log.d("db","${verse.ayaukr} ${verse.ayaarab}  ${verse.ayaindex} ")
-            var db = Database(context)
-            db.inserdata(sura.suraname!!, position, sura.suraindex!!,sura.translation!!, verse.ayaindex!!.toInt(),verse.ayaukr!!,verse.ayaarab!!)
+
+            db.inserdata(sura.suraname!!, position, sura.suraindex!!,sura.translation!!, verse.ayaindex!!.toInt(),verse.ayaukr!!,verse.ayaarab!!, "no")
         }
+        holder.share.setOnClickListener {
+            db.inserdata(sura.suraname!!, position, sura.suraindex!!,sura.translation!!, verse.ayaindex!!.toInt(),verse.ayaukr!!,verse.ayaarab!!, "yes")
+        }
+
+
 
 
     }

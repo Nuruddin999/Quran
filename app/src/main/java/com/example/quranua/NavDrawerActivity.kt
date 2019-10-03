@@ -1,8 +1,6 @@
 package com.example.quranua
 
 import android.os.Bundle
-import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.android.material.snackbar.Snackbar
 import androidx.core.view.GravityCompat
 import androidx.appcompat.app.ActionBarDrawerToggle
 import android.view.MenuItem
@@ -12,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import android.view.Menu
 import com.example.quranua.Bookmark.BookmarkFragment
+import com.example.quranua.Loved.LovedListFragment
 import com.example.quranua.MainList.ListFragment
 
 class NavDrawerActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
@@ -72,7 +71,8 @@ class NavDrawerActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
 var baseFragment=BaseFragment().getFragment(bookmarkFragment,R.id.fragment_content,this)
             }
             R.id.nav_slideshow -> {
-
+                var fragment= LovedListFragment()
+                var baseFragment=BaseFragment().getFragment(fragment,R.id.fragment_content,this)
             }
             R.id.nav_tools -> {
 

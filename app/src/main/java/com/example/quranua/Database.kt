@@ -44,14 +44,14 @@ class Database (var context: Context) : SQLiteOpenHelper(context, DBNAME, null, 
             Toast.makeText(context, "добавлено", Toast.LENGTH_LONG).show()
         }
     }
-    fun readdata(): ArrayList<Bookmark>
+    fun readdata(loved: String): ArrayList<Bookmark>
     {
         var no="no"
         var db = this.writableDatabase
         var list = ArrayList<Bookmark>()
 
-        val query = "SELECT * FROM $TABLE_NAME WHERE $COL_LOVED = $no "
-        val result = db.rawQuery(query, null)
+
+        val result = db.rawQuery("SELECT * FROM $TABLE_NAME WHERE $COL_LOVED = ? ", arrayOf(loved))
         if (result.moveToFirst()) {
 
             do {
