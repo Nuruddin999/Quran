@@ -32,7 +32,7 @@ open class SuraDetailsAdapter(
 
         var verse = list[position]
         holder.contextmenu.setBackgroundColor(Color.BLUE)
-        holder.ayanumber.text=verse.ayaindex
+        holder.ayanumber.text = verse.ayaindex
         holder.ayaukr.text = " ${verse.ayaukr}"
         holder.ayaarabik.text = "${verse.ayaarab}"
         holder.container.setOnClickListener {
@@ -40,7 +40,7 @@ open class SuraDetailsAdapter(
             previousindex = position
             notifyDataSetChanged()
         }
-        holder.suraheader.visibility=TextView.GONE
+        holder.suraheader.visibility = TextView.GONE
         var db = Database(context)
         if (previousindex == position) {
             holder.contextmenu.visibility = RelativeLayout.VISIBLE
@@ -48,17 +48,36 @@ open class SuraDetailsAdapter(
             holder.contextmenu.visibility = RelativeLayout.GONE
         }
         holder.addbookmark.setOnClickListener {
-            Log.d("db","${verse.ayaukr} ${verse.ayaarab}  ${verse.ayaindex} ")
+            Log.d("db", "${verse.ayaukr} ${verse.ayaarab}  ${verse.ayaindex} ")
 
-            db.inserdata(sura.suraname!!, position, sura.suraindex!!,sura.translation!!, verse.ayaindex!!.toInt(),verse.ayaukr!!,verse.ayaarab!!, "no")
+            db.inserdata(
+                sura.suraname!!,
+                position,
+                sura.suraindex!!,
+                sura.translation!!,
+                verse.ayaindex!!.toInt(),
+                verse.ayaukr!!,
+                verse.ayaarab!!,
+                "no"
+            )
         }
         holder.share.setOnClickListener {
-            db.inserdata(sura.suraname!!, position, sura.suraindex!!,sura.translation!!, verse.ayaindex!!.toInt(),verse.ayaukr!!,verse.ayaarab!!, "yes")
+            db.inserdata(
+                sura.suraname!!,
+                position,
+                sura.suraindex!!,
+                sura.translation!!,
+                verse.ayaindex!!.toInt(),
+                verse.ayaukr!!,
+                verse.ayaarab!!,
+                "yes"
+            )
         }
-
-
-
-
+    }
+    fun filterList(newlist:ArrayList<Verse>,newsura: Sura){
+        list=newlist
+        sura=newsura
+notifyDataSetChanged()
     }
 
 }

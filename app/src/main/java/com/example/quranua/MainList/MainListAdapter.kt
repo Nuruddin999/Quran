@@ -42,4 +42,8 @@ BaseFragment().getFragment(fragment,R.id.fragment_content, activity as AppCompat
 
         }
     }
+   fun filterList(newlist:ArrayList<Sura>){
+        list=newlist
+        notifyDataSetChanged()
+    }
 }

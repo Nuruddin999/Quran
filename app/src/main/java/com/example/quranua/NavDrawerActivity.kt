@@ -9,9 +9,11 @@ import com.google.android.material.navigation.NavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import android.view.Menu
+import androidx.appcompat.widget.SearchView
 import com.example.quranua.Bookmark.BookmarkFragment
 import com.example.quranua.Loved.LovedListFragment
 import com.example.quranua.MainList.ListFragment
+import com.example.quranua.Testing.BlankFragment
 
 class NavDrawerActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
@@ -21,8 +23,8 @@ class NavDrawerActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
         setContentView(R.layout.activity_nav_drawer)
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
-        var fragment= ListFragment()
-        var baseFragment=BaseFragment().getFragment(fragment,R.id.fragment_content,this)
+        var fragment = ListFragment()
+        var baseFragment = BaseFragment().getFragment(fragment, R.id.fragment_content, this)
         val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
         val navView: NavigationView = findViewById(R.id.nav_view)
         val toggle = ActionBarDrawerToggle(
@@ -32,6 +34,7 @@ class NavDrawerActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
         toggle.syncState()
 
         navView.setNavigationItemSelectedListener(this)
+
     }
 
     override fun onBackPressed() {
@@ -43,36 +46,43 @@ class NavDrawerActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
         }
     }
 
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+ /*   override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.nav_drawer, menu)
-        return true
-    }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        val searchItem = menu.findItem(R.id.action_search)
+        // Optional: if you want to expand SearchView from icon to edittext view
+        searchItem.expandActionView()
+
+        val searchView = searchItem.actionView as SearchView
+
+        return true
+    }*/
+
+   /* override fun onOptionsItemSelected(item: MenuItem): Boolean {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         return when (item.itemId) {
-            R.id.action_settings -> true
+            R.id.action_search -> true
             else -> super.onOptionsItemSelected(item)
         }
-    }
+    }*/
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         // Handle navigation view item clicks here.
         when (item.itemId) {
             R.id.nav_home -> {
-                var fragment= ListFragment()
-                var baseFragment=BaseFragment().getFragment(fragment,R.id.fragment_content,this)
+                var fragment = ListFragment()
+                var baseFragment = BaseFragment().getFragment(fragment, R.id.fragment_content, this)
             }
             R.id.nav_gallery -> {
-                var bookmarkFragment=BookmarkFragment()
-var baseFragment=BaseFragment().getFragment(bookmarkFragment,R.id.fragment_content,this)
+                var bookmarkFragment = BookmarkFragment()
+                var baseFragment = BaseFragment().getFragment(bookmarkFragment, R.id.fragment_content, this)
             }
             R.id.nav_slideshow -> {
-                var fragment= LovedListFragment()
-                var baseFragment=BaseFragment().getFragment(fragment,R.id.fragment_content,this)
+                var fragment = LovedListFragment()
+                var baseFragment = BaseFragment().getFragment(fragment, R.id.fragment_content, this)
             }
             R.id.nav_tools -> {
 

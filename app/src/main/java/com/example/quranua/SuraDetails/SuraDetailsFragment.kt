@@ -14,7 +14,7 @@ import com.example.quranua.R
 import org.json.JSONObject
 
 open class SuraDetailsFragment : BaseFragment() {
-
+open var adapter:SuraDetailsAdapter?=null
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         var view = inflater.inflate(R.layout.activity_sura_details, container, false)
         recyclerView = view.findViewById(R.id.sura_details_list)
@@ -53,8 +53,9 @@ open class SuraDetailsFragment : BaseFragment() {
         } catch (e: Exception) {
         }
         Log.d("sura", "${sura.suraname} ${sura.translation} ${sura.suraindex} ")
-        adapter = SuraDetailsAdapter(sura.verses!!, context!!, sura) as RecyclerView.Adapter<RecyclerView.ViewHolder>
-        makeListView()
+        adapter = SuraDetailsAdapter(sura.verses!!, context!!, sura)
+        recyclerView!!.layoutManager=layoutManager
+        recyclerView!!.adapter=adapter
         if (pos!=null){
             recyclerView!!.scrollToPosition(pos)
         }
