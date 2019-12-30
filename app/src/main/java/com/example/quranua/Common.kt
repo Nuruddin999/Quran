@@ -9,23 +9,24 @@ import org.json.JSONObject
 object Common:AppCompatActivity() {
     var suras=ArrayList<Sura>()
     var verses=ArrayList<Verse>()
-   /* fun getAllSuras(context:Context):ArrayList<Sura>{
+ /*   fun getAllSuras(context:Context):ArrayList<Sura> {
         var json: String? = null
-        var jsonquranarabik:String?=null
+        var jsonquranarabik: String? = null
         for (i in 1..114) {
             try {
-
                 var inpstr = context!!.assets.open("quranJson/${i}.json")
                 json = inpstr.bufferedReader().use { it.readText() }
                 inpstr.close()
-                inpstr = context!!.assets.open("Arabic JSON/surah_${i}.json")
-                jsonquranarabik=inpstr.bufferedReader().use { it.readText() }
-                inpstr.close()
                 var jsonobj = JSONObject(json)
-                var arabjsonobj=JSONObject(jsonquranarabik)
-                var sura=Sura()
-                sura.suraname=jsonobj.getString("")
-            } catch (){}
-    }
-}*/
+                var verse = jsonobj.getJSONObject("verse")
+                var o = jsonobj.getString("name")
+                var sura = Sura(i, o, jsonobj.getString("translation"), jsonobj.getInt("count"), null)
+                suras!!.add(sura)
+                inpstr = context!!.assets.open("Arabic JSON/surah_${i}.json")
+                jsonquranarabik = inpstr.bufferedReader().use { it.readText() }
+                inpstr.close()
+            } catch (e: Exception) {
+            }
+        }
+    }*/
 }

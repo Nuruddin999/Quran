@@ -5,11 +5,14 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.quranua.BaseFragment
 import com.example.quranua.Model.Sura
 import com.example.quranua.Model.Verse
+import com.example.quranua.NavDrawerActivity
 import com.example.quranua.R
 import org.json.JSONObject
 

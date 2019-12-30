@@ -1,28 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/coordinatorlayout"
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".NavDrawerActivity">
-
+<LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical"
+>
     <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appbarlayout"
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
-            android:theme="@style/AppTheme.AppBarOverlay">
-
+            android:theme="@style/AppTheme.AppBarOverlay"
+    >
         <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:background="?attr/colorPrimary"
-                app:popupTheme="@style/AppTheme.PopupOverlay">
-        </androidx.appcompat.widget.Toolbar>
+                app:popupTheme="@style/AppTheme.PopupOverlay"
+                app:layout_scrollFlags="enterAlways"
+        />
+
+
     </com.google.android.material.appbar.AppBarLayout>
 
+    <androidx.core.widget.NestedScrollView android:layout_width="match_parent"
+                                           android:layout_height="wrap_content"
+                                           app:layout_behavior="@string/appbar_scrolling_view_behavior">
+    >
+<LinearLayout android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="vertical">
+    <EditText
+            android:id="@+id/search_edittext"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+android:clickable="true"
+
+              android:focusable="false"
+
+    />
     <include layout="@layout/content_nav_drawer"/>
+</LinearLayout>
 
 
+    </androidx.core.widget.NestedScrollView>
 
+</LinearLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

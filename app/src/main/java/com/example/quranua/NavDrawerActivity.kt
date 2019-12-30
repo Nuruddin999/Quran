@@ -1,6 +1,9 @@
 package com.example.quranua
 
+import android.content.Intent
+import android.opengl.Visibility
 import android.os.Bundle
+import android.util.Log
 import androidx.core.view.GravityCompat
 import androidx.appcompat.app.ActionBarDrawerToggle
 import android.view.MenuItem
@@ -9,13 +12,16 @@ import com.google.android.material.navigation.NavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import android.view.Menu
+import android.widget.EditText
+import android.widget.LinearLayout
 import androidx.appcompat.widget.SearchView
 import com.example.quranua.Bookmark.BookmarkFragment
 import com.example.quranua.Loved.LovedListFragment
 import com.example.quranua.MainList.ListFragment
 import com.example.quranua.Testing.BlankFragment
+import kotlinx.android.synthetic.main.app_bar_nav_drawer.*
 
-class NavDrawerActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+open class NavDrawerActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,10 +29,20 @@ class NavDrawerActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
         setContentView(R.layout.activity_nav_drawer)
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
+
         var fragment = ListFragment()
         var baseFragment = BaseFragment().getFragment(fragment, R.id.fragment_content, this)
         val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
         val navView: NavigationView = findViewById(R.id.nav_view)
+        val searchedittext:EditText=findViewById(R.id.search_edittext)
+        searchedittext.visibility=EditText.VISIBLE
+        var fragmentzone:LinearLayout=findViewById(R.id.fragmentzone)
+        searchedittext.setOnClickListener {
+
+               var intent=Intent(this,GlobalSearchActivity::class.java)
+            startActivity(intent)
+
+        }
         val toggle = ActionBarDrawerToggle(
             this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close
         )
@@ -84,18 +100,12 @@ class NavDrawerActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
                 var fragment = LovedListFragment()
                 var baseFragment = BaseFragment().getFragment(fragment, R.id.fragment_content, this)
             }
-            R.id.nav_tools -> {
 
-            }
-            R.id.nav_share -> {
-
-            }
-            R.id.nav_send -> {
-
-            }
         }
         val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
         drawerLayout.closeDrawer(GravityCompat.START)
         return true
     }
+
+
 }

@@ -14,7 +14,9 @@ open class BaseFragment:Fragment() {
         activity.supportFragmentManager
         var fragmentTransaction = activity.supportFragmentManager.beginTransaction()
         fragmentTransaction.replace(view, fragment)
+        fragmentTransaction.addToBackStack(null)
         fragmentTransaction.commit()
+
     }
 
 

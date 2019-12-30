@@ -41,7 +41,6 @@ var suras:ArrayList<Sura>?=null
                 inpstr.close()
                 var jsonobj = JSONObject(json)
                 var verse = jsonobj.getJSONObject("verse")
-
                 var o = jsonobj.getString("name")
                 var sura = Sura(i, o, jsonobj.getString("translation"), jsonobj.getInt("count"), null)
                 suras!!.add(sura)
@@ -64,27 +63,16 @@ var suras:ArrayList<Sura>?=null
 
         val searchItem = menu!!.findItem(R.id.action_search)
         // Optional: if you want to expand SearchView from icon to edittext view
-        searchItem.expandActionView()
-            searchView = searchItem.actionView as SearchView
 
-        searchView!!.setOnQueryTextListener(object :SearchView.OnQueryTextListener{
-            override fun onQueryTextSubmit(query: String?): Boolean {
-                return false
-            }
+    }
 
-            override fun onQueryTextChange(newText: String?): Boolean {
-                var newList=ArrayList<Sura>()
-                Log.d("query","works")
-                for (s in suras!!){
-                    var name=newText!!.toLowerCase().trim()
-                    if (s.suraname!!.contains(name)){
-                            newList.add(s)
-                        }
-                }
-                adptr!!.filterList(newList)
-                return true
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        when (item!!.itemId){
+            R.id.action_search-> {Log.d("search icon","search selected")
+
             }
-        })
+        }
+        return true
     }
 
 }
