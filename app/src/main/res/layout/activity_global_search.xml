@@ -6,13 +6,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:context=".GlobalSearchActivity">
+        tools:context=".GLobalSearch.GlobalSearchActivity">
     <androidx.appcompat.widget.Toolbar
             android:id="@+id/globalsearchtoolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/colorPrimary">
-        <EditText
+        <androidx.appcompat.widget.SearchView
                 android:id="@+id/foundsurassearchfield"
                 android:layout_width="match_parent" android:layout_height="wrap_content"/>
     </androidx.appcompat.widget.Toolbar>

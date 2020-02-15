@@ -14,11 +14,10 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main_list_layout)
-        var fragment=ListFragment()
-        var baseFragment=BaseFragment().getFragment(fragment,R.id.fragment_content,this)
-
+        var fragment = ListFragment()
+        var baseFragment = BaseFragment().getFragment(fragment, R.id.fragment_content, this)
     }
 
 
-    }
+}
 
