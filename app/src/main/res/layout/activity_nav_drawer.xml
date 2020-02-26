@@ -8,22 +8,122 @@
         android:layout_height="match_parent"
         android:fitsSystemWindows="true"
         tools:openDrawer="start">
-<LinearLayout
-        android:id="@+id/fragmentzone"
-        android:layout_width="match_parent" android:layout_height="wrap_content"
-android:orientation="vertical">
-    <include
-            layout="@layout/app_bar_nav_drawer"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
-</LinearLayout>
+    <LinearLayout
+            android:id="@+id/fragmentzone"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:orientation="vertical">
+        <include
+                layout="@layout/app_bar_nav_drawer"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+    </LinearLayout>
     <com.google.android.material.navigation.NavigationView
             android:id="@+id/nav_view"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="start"
             android:fitsSystemWindows="true"
-            app:headerLayout="@layout/nav_header_nav_drawer"
-            app:menu="@menu/activity_nav_drawer_drawer"/>
+
+    >
+        <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent"
+                      android:orientation="vertical"
+                      android:background="@color/listbackground">
+            <FrameLayout android:layout_width="match_parent" android:layout_height="wrap_content">     <ImageView android:layout_width="match_parent" android:layout_height="400px" android:src="@color/colorPrimary"/>
+                <ImageView android:layout_width="match_parent" android:layout_height="wrap_content"
+                           android:src="@drawable/qurancaligraphybackground"/>
+            <ImageView android:layout_width="250px" android:layout_height="250px"
+            android:src="@drawable/quranua"
+            android:layout_gravity="center|bottom"
+            android:layout_marginBottom="15dp"/>
+            </FrameLayout>
+
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                          android:orientation="horizontal"
+
+                          android:layout_margin="6dp">
+                <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                           android:src="@drawable/quraicon"
+                           android:layout_gravity="center"
+                           android:padding="12dp"
+                />
+                <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                          android:text="Коран"
+                          android:textAlignment="viewStart"
+                          android:background="@drawable/nadrawer_menu_tem_title_background" android:padding="8dp"
+                          android:textSize="18sp"
+                          android:layout_marginLeft="5dp"/>
+            </LinearLayout>
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                          android:orientation="horizontal"
+
+                          android:layout_margin="6dp">
+                <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                           android:src="@drawable/ululeni"
+                           android:layout_gravity="center"
+                           android:padding="12dp"
+                />
+                <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                          android:text="Улюбленi"
+                          android:textSize="18sp" android:textAlignment="viewStart"
+                          android:background="@drawable/nadrawer_menu_tem_title_background" android:padding="8dp"
+                          android:layout_marginLeft="15dp"/>
+            </LinearLayout>
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                          android:orientation="horizontal"
+
+            android:layout_margin="6dp">
+                <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                           android:src="@drawable/navdrawerbookmark"
+                           android:layout_gravity="center"
+                           android:padding="12dp"
+                           />
+                <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                          android:text="Закладки"
+                          android:textAlignment="viewStart"
+                          android:background="@drawable/nadrawer_menu_tem_title_background" android:padding="8dp"
+                          android:textSize="18sp" android:layout_marginLeft="15dp"/>
+            </LinearLayout>
+<TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+android:text="Налаштування"
+android:layout_margin="15dp"
+android:textSize="18sp"/>
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                          android:orientation="horizontal"
+
+                          android:layout_margin="6dp">
+                <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                           android:src="@drawable/paint_palette"
+                           android:layout_gravity="center|center_vertical"
+
+                           android:padding="12dp"
+                />
+                <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                          android:text="Вигляд"
+                          android:textAlignment="viewStart"
+                          android:background="@drawable/nadrawer_menu_tem_title_background" android:padding="8dp"
+                          android:textSize="18sp" android:layout_marginLeft="15dp"/>
+            </LinearLayout>
+            <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                      android:text="Про додаток"
+                      android:layout_margin="15dp"
+                      android:textSize="18sp"/>
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                          android:orientation="horizontal"
+
+                          android:layout_margin="6dp">
+                <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                           android:src="@drawable/mail"
+                           android:layout_gravity="center|center_vertical"
+
+                           android:padding="12dp"
+                />
+                <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                          android:text="Про додаток"
+                          android:textAlignment="viewStart"
+                          android:background="@drawable/nadrawer_menu_tem_title_background" android:padding="8dp"
+                          android:textSize="18sp" android:layout_marginLeft="15dp"/>
+            </LinearLayout>
+        </LinearLayout>
+    </com.google.android.material.navigation.NavigationView>
 
 </androidx.drawerlayout.widget.DrawerLayout>
