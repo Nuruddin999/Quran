@@ -12,16 +12,19 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import android.widget.EditText
 import android.widget.LinearLayout
+import androidx.fragment.app.Fragment
 import com.example.quranua.Bookmark.BookmarkFragment
 import com.example.quranua.GLobalSearch.GlobalSearchActivity
 import com.example.quranua.Loved.LovedListFragment
 import com.example.quranua.MainList.ListFragment
 import com.example.quranua.Model.Sura
+import kotlinx.android.synthetic.main.activity_nav_drawer.*
 import kotlinx.coroutines.*
 import kotlinx.coroutines.Dispatchers.Main
 import java.util.ArrayList
 
-open class NavDrawerActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+open class NavDrawerActivity : AppCompatActivity(),
+    NavigationView.OnNavigationItemSelectedListener {
     companion object {
         lateinit var myContext: Context
     }
@@ -58,13 +61,27 @@ open class NavDrawerActivity : AppCompatActivity(), NavigationView.OnNavigationI
             startActivity(intent)
         }
         val toggle = ActionBarDrawerToggle(
-            this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close
+            this,
+            drawerLayout,
+            toolbar,
+            R.string.navigation_drawer_open,
+            R.string.navigation_drawer_close
         )
         drawerLayout.addDrawerListener(toggle)
         toggle.syncState()
 
         navView.setNavigationItemSelectedListener(this)
-
+        quranItem.setOnClickListener {
+            openMenuItem(fragment)
+        }
+        lovedItem.setOnClickListener {
+            var fragment=LovedListFragment()
+          openMenuItem(fragment)
+        }
+        bookmarksItem.setOnClickListener {
+            var fragment=BookmarkFragment()
+            openMenuItem(fragment)
+        }
     }
 
     override fun onBackPressed() {
@@ -108,7 +125,8 @@ open class NavDrawerActivity : AppCompatActivity(), NavigationView.OnNavigationI
             }
             R.id.nav_gallery -> {
                 var bookmarkFragment = BookmarkFragment()
-                var baseFragment = BaseFragment().getFragment(bookmarkFragment, R.id.fragment_content, this)
+                var baseFragment =
+                    BaseFragment().getFragment(bookmarkFragment, R.id.fragment_content, this)
             }
             R.id.nav_slideshow -> {
                 var fragment = LovedListFragment()
@@ -120,6 +138,8 @@ open class NavDrawerActivity : AppCompatActivity(), NavigationView.OnNavigationI
         drawerLayout.closeDrawer(GravityCompat.START)
         return true
     }
-
+ fun openMenuItem(fragment:Fragment){
+     BaseFragment().getFragment(fragment, R.id.fragment_content, this)
+ }
 
 }
