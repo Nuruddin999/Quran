@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical" android:layout_width="match_parent"
+        android:layout_height="match_parent">
+<TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+    android:text="@string/settings_basic"
+        android:background="#C9C8C8"
+        android:paddingTop="33px"
+        android:paddingBottom="7px"
+android:paddingLeft="50px"
+        />
+<RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="35px">
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/settings_arabictext"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"/>
+    <Switch
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:layout_alignParentEnd="true"/>
+
+</RelativeLayout>
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="35px">
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/settings_texttransfer"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"/>
+        <Switch
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:layout_alignParentEnd="true"/>
+
+    </RelativeLayout>
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/settings_textsize"
+            android:background="#C9C8C8"
+            android:paddingTop="33px"
+            android:paddingBottom="7px"
+            android:paddingLeft="50px"
+            />
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp">
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="А"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true" />
+
+        <SeekBar
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_centerVertical="true"
+                android:layout_marginHorizontal="20dp"
+                android:thumb="@drawable/seekbar_thumb_drawable"/>
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="А"
+                android:textSize="35sp"
+                android:textStyle="bold"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                />
+
+    </RelativeLayout>
+</LinearLayout>

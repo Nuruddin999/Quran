@@ -82,6 +82,10 @@ open class NavDrawerActivity : AppCompatActivity(),
             var fragment=BookmarkFragment()
             openMenuItem(fragment)
         }
+        settingsItem.setOnClickListener {
+            var fragment=SettingsFragment()
+            openMenuItem(fragment)
+        }
     }
 
     override fun onBackPressed() {
