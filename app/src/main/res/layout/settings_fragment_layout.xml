@@ -21,9 +21,12 @@ android:paddingLeft="50px"
             android:text="@string/settings_arabictext"
             android:layout_alignParentStart="true"
             android:layout_centerVertical="true"/>
+
     <Switch
+            android:id="@+id/settings_arabictext"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:layout_alignParentEnd="true"/>
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true" />
 
 </RelativeLayout>
     <RelativeLayout
@@ -36,9 +39,12 @@ android:paddingLeft="50px"
                 android:text="@string/settings_texttransfer"
                 android:layout_alignParentStart="true"
                 android:layout_centerVertical="true"/>
+
         <Switch
+                android:id="@+id/settings_texttransfer"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" android:layout_alignParentEnd="true"/>
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true" />
 
     </RelativeLayout>
     <TextView
@@ -64,12 +70,12 @@ android:paddingLeft="50px"
                 android:layout_centerVertical="true" />
 
         <SeekBar
+                android:id="@+id/settings_textsizeseekbar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:layout_centerVertical="true"
                 android:layout_marginHorizontal="20dp"
-                android:thumb="@drawable/seekbar_thumb_drawable"/>
+                android:thumb="@drawable/seekbar_thumb_drawable" />
 
         <TextView
                 android:layout_width="wrap_content"
@@ -82,4 +88,40 @@ android:paddingLeft="50px"
                 />
 
     </RelativeLayout>
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="#C9C8C8"
+            >
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/settings_textsizeview"
+                android:paddingTop="33px"
+                android:paddingBottom="7px"
+                android:paddingLeft="30dp"
+                />
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#fff"
+        android:layout_marginLeft="30dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="20dp"
+                android:layout_marginTop="15dp"
+                android:padding="60dp"
+                >
+
+            <TextView
+                    android:id="@+id/settings_textsizedisplay"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="Iм'ям Аллага Милостивого Милосердного!"
+                    android:textAlignment="center"/>
+        </RelativeLayout>
+
+    </LinearLayout>
+
 </LinearLayout>
