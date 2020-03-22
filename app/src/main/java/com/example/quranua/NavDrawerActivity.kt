@@ -25,6 +25,10 @@ import java.util.ArrayList
 
 open class NavDrawerActivity : AppCompatActivity(),
     NavigationView.OnNavigationItemSelectedListener {
+    override fun onNavigationItemSelected(p0: MenuItem): Boolean {
+        return false
+    }
+
     companion object {
         lateinit var myContext: Context
     }
@@ -46,20 +50,14 @@ open class NavDrawerActivity : AppCompatActivity(),
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_nav_drawer)
         val toolbar: Toolbar = findViewById(R.id.toolbar)
+
         setSupportActionBar(toolbar)
+        title="Коран"
         myContext = this
         var fragment = ListFragment()
-
         var baseFragment = BaseFragment().getFragment(fragment, R.id.fragment_content, this)
         val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
         val navView: NavigationView = findViewById(R.id.nav_view)
-    /*    val searchedittext: EditText = findViewById(R.id.search_edittext)
-        searchedittext.visibility = EditText.VISIBLE*/
-        var fragmentzone: LinearLayout = findViewById(R.id.fragmentzone)
-    /*    searchedittext.setOnClickListener {
-            var intent = Intent(this, GlobalSearchActivity::class.java)
-            startActivity(intent)
-        }*/
         val toggle = ActionBarDrawerToggle(
             this,
             drawerLayout,
@@ -72,19 +70,20 @@ open class NavDrawerActivity : AppCompatActivity(),
 
         navView.setNavigationItemSelectedListener(this)
         quranItem.setOnClickListener {
-            openMenuItem(fragment)
+            openMenuItem(fragment,drawerLayout)
         }
         lovedItem.setOnClickListener {
             var fragment=LovedListFragment()
-          openMenuItem(fragment)
+          openMenuItem(fragment,drawerLayout)
         }
         bookmarksItem.setOnClickListener {
             var fragment=BookmarkFragment()
-            openMenuItem(fragment)
+            openMenuItem(fragment,drawerLayout)
         }
         settingsItem.setOnClickListener {
             var fragment=SettingsFragment()
-            openMenuItem(fragment)
+            openMenuItem(fragment,drawerLayout)
+
         }
     }
 
@@ -97,53 +96,11 @@ open class NavDrawerActivity : AppCompatActivity(),
         }
     }
 
-    /*   override fun onCreateOptionsMenu(menu: Menu): Boolean {
-           // Inflate the menu; this adds items to the action bar if it is present.
-           menuInflater.inflate(R.menu.nav_drawer, menu)
 
-           val searchItem = menu.findItem(R.id.action_search)
-           // Optional: if you want to expand SearchView from icon to edittext view
-           searchItem.expandActionView()
 
-           val searchView = searchItem.actionView as SearchView
-
-           return true
-       }*/
-
-    /* override fun onOptionsItemSelected(item: MenuItem): Boolean {
-         // Handle action bar item clicks here. The action bar will
-         // automatically handle clicks on the Home/Up button, so long
-         // as you specify a parent activity in AndroidManifest.xml.
-         return when (item.itemId) {
-             R.id.action_search -> true
-             else -> super.onOptionsItemSelected(item)
-         }
-     }*/
-
-    override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        // Handle navigation view item clicks here.
-        when (item.itemId) {
-            R.id.nav_home -> {
-                var fragment = ListFragment()
-                var baseFragment = BaseFragment().getFragment(fragment, R.id.fragment_content, this)
-            }
-            R.id.nav_gallery -> {
-                var bookmarkFragment = BookmarkFragment()
-                var baseFragment =
-                    BaseFragment().getFragment(bookmarkFragment, R.id.fragment_content, this)
-            }
-            R.id.nav_slideshow -> {
-                var fragment = LovedListFragment()
-                var baseFragment = BaseFragment().getFragment(fragment, R.id.fragment_content, this)
-            }
-
-        }
-        val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
-        drawerLayout.closeDrawer(GravityCompat.START)
-        return true
-    }
- fun openMenuItem(fragment:Fragment){
+ fun openMenuItem(fragment:Fragment,drawerLayout: DrawerLayout){
      BaseFragment().getFragment(fragment, R.id.fragment_content, this)
+     drawerLayout.closeDrawer(GravityCompat.START)
  }
 
 }
