@@ -1,15 +1,18 @@
 package com.example.quranua.SuraDetails
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.quranua.BaseFragment
+import com.example.quranua.GLobalSearch.GlobalSearchActivity
 import com.example.quranua.Model.Sura
 import com.example.quranua.Model.Verse
 import com.example.quranua.NavDrawerActivity
@@ -22,6 +25,11 @@ open var adapter:SuraDetailsAdapter?=null
         var view = inflater.inflate(R.layout.activity_sura_details, container, false)
         recyclerView = view.findViewById(R.id.sura_details_list)
         layoutManager = LinearLayoutManager(context)
+        val searchedittext: EditText =view.findViewById(R.id.search_edittext_details)
+        searchedittext.setOnClickListener {
+            var intent = Intent(context, GlobalSearchActivity::class.java)
+            startActivity(intent)
+        }
         var json: String? = null
         var jsonquranarabik: String? = null
         var sura = Sura()
@@ -55,7 +63,6 @@ open var adapter:SuraDetailsAdapter?=null
             }
         } catch (e: Exception) {
         }
-        Log.d("sura", "${sura.suraname} ${sura.translation} ${sura.suraindex} ")
         adapter = SuraDetailsAdapter(sura.verses!!, context!!, sura)
         recyclerView!!.layoutManager=layoutManager
         recyclerView!!.adapter=adapter

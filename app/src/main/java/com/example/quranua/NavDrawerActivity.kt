@@ -53,13 +53,13 @@ open class NavDrawerActivity : AppCompatActivity(),
         var baseFragment = BaseFragment().getFragment(fragment, R.id.fragment_content, this)
         val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
         val navView: NavigationView = findViewById(R.id.nav_view)
-        val searchedittext: EditText = findViewById(R.id.search_edittext)
-        searchedittext.visibility = EditText.VISIBLE
+    /*    val searchedittext: EditText = findViewById(R.id.search_edittext)
+        searchedittext.visibility = EditText.VISIBLE*/
         var fragmentzone: LinearLayout = findViewById(R.id.fragmentzone)
-        searchedittext.setOnClickListener {
+    /*    searchedittext.setOnClickListener {
             var intent = Intent(this, GlobalSearchActivity::class.java)
             startActivity(intent)
-        }
+        }*/
         val toggle = ActionBarDrawerToggle(
             this,
             drawerLayout,

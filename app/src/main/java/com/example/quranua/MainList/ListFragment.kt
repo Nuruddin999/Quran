@@ -2,9 +2,11 @@ package com.example.quranua.MainList
 
 import android.app.SearchManager
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.*
+import android.widget.EditText
 import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -13,6 +15,7 @@ import com.example.quranua.Model.Sura
 import com.example.quranua.Model.Verse
 import com.example.quranua.R
 import com.example.quranua.Common
+import com.example.quranua.GLobalSearch.GlobalSearchActivity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -36,6 +39,11 @@ class ListFragment : BaseFragment() {
         recyclerView = view.findViewById(R.id.main_list_recycler)
         layoutManager = LinearLayoutManager(context)
         var json: String? = null
+        val searchedittext: EditText =view.findViewById(R.id.search_edittext)
+        searchedittext.setOnClickListener {
+            var intent = Intent(context, GlobalSearchActivity::class.java)
+            startActivity(intent)
+        }
         suras = Common.getAllSuras(context!!)
         verses = ArrayList<Verse>()
         adptr = MainListAdapter(suras!!, context!!, this.activity)

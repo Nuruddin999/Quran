@@ -7,7 +7,14 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         tools:context=".SuraDetails.SuraDetails">
+    <EditText
+            android:id="@+id/search_edittext_details"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:clickable="true"
 
+            android:focusable="false"
+
+            />
     <TextView
             android:id="@+id/sura_details_suraname_english"
             android:layout_width="wrap_content" android:layout_height="wrap_content"

@@ -6,13 +6,17 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
 android:orientation="vertical"
-android:background="#C62828">
+android:background="#fefefe">
+    <EditText
+            android:id="@+id/search_edittext"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:clickable="true"
+
+            android:focusable="false"
+
+            />
     <androidx.recyclerview.widget.RecyclerView
-            android:layout_marginLeft="12dp"
             android:id="@+id/main_list_recycler"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"></androidx.recyclerview.widget.RecyclerView>
-    <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
-    android:text="TEXT"
-    android:textSize="56sp"/>
 </LinearLayout>
