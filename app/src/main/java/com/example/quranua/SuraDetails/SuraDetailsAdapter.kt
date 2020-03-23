@@ -4,9 +4,11 @@ import android.content.Context
 import android.graphics.Color
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.widget.RelativeLayout
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.quranua.Database
 import com.example.quranua.Model.Sura
@@ -29,11 +31,17 @@ open class SuraDetailsAdapter(
     }
 
     override fun onBindViewHolder(holder: SuraDetailsViewHolder, position: Int) {
-
+        val sharedPref=context.getSharedPreferences("settings",Context.MODE_PRIVATE)
+      var set=  sharedPref.getBoolean("Arabictext",false)
+        Log.d("Arabictext  ", set.toString())
+        if (!sharedPref.getBoolean("Arabictext",false)){
+            holder.ayaarabik.visibility=View.GONE
+        }
         var verse = list[position]
         holder.contextmenu.setBackgroundColor(Color.BLUE)
         holder.ayanumber.text = verse.ayaindex
         holder.ayaukr.text = " ${verse.ayaukr}"
+
         holder.ayaarabik.text = "${verse.ayaarab}"
         holder.container.setOnClickListener {
             Log.d("suradetals", "container clicks")
