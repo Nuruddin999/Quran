@@ -24,6 +24,7 @@ class SettingsFragment : BaseFragment() {
         savedInstanceState: Bundle?
     ): View? {
         activity?.title = "Вигляд"
+        val sharedPref = activity?.getSharedPreferences("settings", Context.MODE_PRIVATE)
         var view = inflater.inflate(R.layout.settings_fragment_layout, container, false)
         var seekbar: SeekBar = view.findViewById(R.id.settings_textsizeseekbar)
         seekbar.progressDrawable.setColorFilter(
@@ -32,12 +33,22 @@ class SettingsFragment : BaseFragment() {
         )
         var textSizeDsiplay: TextView = view.findViewById(R.id.settings_textsizedisplay)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            seekbar.min = 10
+            seekbar.min = 1
         }
         seekbar.max = 30
+        seekbar.progress = 12
+        if (sharedPref!!.contains("Textsize")) {
+            seekbar.progress = sharedPref.getInt("Textsize", 12)
+        }
+        textSizeDsiplay.textSize = seekbar.progress.toFloat()
         seekbar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {
                 textSizeDsiplay.textSize = p1.toFloat()
+
+                with(sharedPref.edit()) {
+                    putInt("Textsize", p1)
+                    commit()
+                }
             }
 
             override fun onStartTrackingTouch(p0: SeekBar?) {
@@ -48,11 +59,11 @@ class SettingsFragment : BaseFragment() {
             }
         })
         var settings_arabictext: Switch = view.findViewById(R.id.settings_arabictext)
+        if (sharedPref!!.contains("Arabictext")) {
+            settings_arabictext.isChecked = true
+        }
         settings_arabictext.setOnCheckedChangeListener { compoundButton, b ->
             run {
-
-                val sharedPref = activity?.getSharedPreferences("settings",Context.MODE_PRIVATE)
-                    ?: return@setOnCheckedChangeListener
                 with(sharedPref.edit()) {
                     if (b) {
                         putBoolean("Arabictext", true)

@@ -31,17 +31,20 @@ open class SuraDetailsAdapter(
     }
 
     override fun onBindViewHolder(holder: SuraDetailsViewHolder, position: Int) {
-        val sharedPref=context.getSharedPreferences("settings",Context.MODE_PRIVATE)
-      var set=  sharedPref.getBoolean("Arabictext",false)
+        val sharedPref = context.getSharedPreferences("settings", Context.MODE_PRIVATE)
+        var set = sharedPref.getBoolean("Arabictext", false)
         Log.d("Arabictext  ", set.toString())
-        if (!sharedPref.getBoolean("Arabictext",false)){
-            holder.ayaarabik.visibility=View.GONE
+        if (!sharedPref.contains("Arabictext")) {
+            holder.ayaarabik.visibility = View.GONE
+        }
+        if (!sharedPref.contains("Textsize")) {
+            holder.ayaarabik.textSize=sharedPref.getInt("Textsize",12).toFloat()
+            holder.ayaukr.textSize=sharedPref.getInt("Textsize",12).toFloat()
         }
         var verse = list[position]
         holder.contextmenu.setBackgroundColor(Color.BLUE)
         holder.ayanumber.text = verse.ayaindex
         holder.ayaukr.text = " ${verse.ayaukr}"
-
         holder.ayaarabik.text = "${verse.ayaarab}"
         holder.container.setOnClickListener {
             Log.d("suradetals", "container clicks")
@@ -82,10 +85,11 @@ open class SuraDetailsAdapter(
             )
         }
     }
-    fun filterList(newlist:ArrayList<Verse>,newsura: Sura){
-        list=newlist
-        sura=newsura
-notifyDataSetChanged()
+
+    fun filterList(newlist: ArrayList<Verse>, newsura: Sura) {
+        list = newlist
+        sura = newsura
+        notifyDataSetChanged()
     }
 
 }
