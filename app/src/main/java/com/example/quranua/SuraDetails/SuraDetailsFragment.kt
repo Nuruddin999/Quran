@@ -26,6 +26,7 @@ open var adapter:SuraDetailsAdapter?=null
         recyclerView = view.findViewById(R.id.sura_details_list)
         layoutManager = LinearLayoutManager(context)
         val searchedittext: EditText =view.findViewById(R.id.search_edittext_details)
+        searchedittext.visibility=EditText.GONE
         searchedittext.setOnClickListener {
             var intent = Intent(context, GlobalSearchActivity::class.java)
             startActivity(intent)

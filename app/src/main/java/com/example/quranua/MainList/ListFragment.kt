@@ -27,7 +27,7 @@ class ListFragment : BaseFragment() {
     var searchView: SearchView? = null
     var adptr: MainListAdapter? = null
     var verses: ArrayList<Verse>? = null
-
+var scrollYoffset=0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
@@ -40,6 +40,7 @@ class ListFragment : BaseFragment() {
         layoutManager = LinearLayoutManager(context)
         var json: String? = null
         val searchedittext: EditText =view.findViewById(R.id.search_edittext)
+
         searchedittext.setOnClickListener {
             var intent = Intent(context, GlobalSearchActivity::class.java)
             startActivity(intent)
@@ -49,7 +50,17 @@ class ListFragment : BaseFragment() {
         adptr = MainListAdapter(suras!!, context!!, this.activity)
         recyclerView!!.layoutManager = layoutManager
         recyclerView!!.adapter = adptr
+
+
+       // layoutManager!!.scrollToPosition(recyclerView!!.adapter!!.itemCount-30)
         return view
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+       var lmanager=recyclerView!!.layoutManager
+        lmanager!!.smoothScrollToPosition(recyclerView, null, 30);
+        //recyclerView!!.scrollToPosition(recyclerView!!.adapter!!.itemCount-40)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
