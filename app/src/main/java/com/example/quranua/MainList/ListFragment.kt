@@ -39,29 +39,23 @@ var scrollYoffset=0
         recyclerView = view.findViewById(R.id.main_list_recycler)
         layoutManager = LinearLayoutManager(context)
         var json: String? = null
-        val searchedittext: EditText =view.findViewById(R.id.search_edittext)
-
-        searchedittext.setOnClickListener {
-            var intent = Intent(context, GlobalSearchActivity::class.java)
-            startActivity(intent)
-        }
         suras = Common.getAllSuras(context!!)
         verses = ArrayList<Verse>()
         adptr = MainListAdapter(suras!!, context!!, this.activity)
         recyclerView!!.layoutManager = layoutManager
         recyclerView!!.adapter = adptr
-
+        recyclerView!!.scrollToPosition(recyclerView!!.adapter!!.itemCount-113)
 
        // layoutManager!!.scrollToPosition(recyclerView!!.adapter!!.itemCount-30)
         return view
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    /*override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
        var lmanager=recyclerView!!.layoutManager
         lmanager!!.smoothScrollToPosition(recyclerView, null, 30);
-        //recyclerView!!.scrollToPosition(recyclerView!!.adapter!!.itemCount-40)
-    }
+
+    }*/
 
     override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
         inflater!!.inflate(R.menu.nav_drawer, menu)

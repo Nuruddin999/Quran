@@ -20,14 +20,11 @@ object Common : AppCompatActivity() {
     var list = ArrayList<Sura>()
     fun getAllSuras(context: Context): java.util.ArrayList<Sura> {
         var suras = java.util.ArrayList<Sura>()
-        var verses = ArrayList<Verse>()
+
         var json: String? = null
         var jsonquranarabik: String? = null
         for (i in 1..114) {
-            Log.d(
-                "sura",
-                i.toString()
-            )
+
             try {
                 var inpstr: InputStream = context.assets.open("quranJson/${i}.json")
                 json = inpstr.bufferedReader().use { it.readText() }
@@ -41,24 +38,13 @@ object Common : AppCompatActivity() {
                 var verse = jsonobj.getJSONObject("verse")
                 var suraName = jsonobj.getString("name")
                 var suracount = jsonobj.getString("count")
-                var suraindex = jsonobj.getString("index")
+                var suranameeng = jsonquranarabikobject.getString("name")
                 var translation = jsonobj.getString("translation")
-                var sura = Sura(i, suraName, translation, jsonobj.getInt("count"), null)
+                var sura = Sura(i, suraName, translation, suranameeng,jsonobj.getInt("count"), null)
                 var globalSearchResult = GlobalSearchResult()
+                var verses = ArrayList<Verse>()
+
                 for (v in 1..Integer.parseInt(suracount)) {
-                    /*      var ayat = Ayat(
-                              Integer.parseInt(suraindex),
-                              suraName,
-                              translation,
-                              suracount,
-                              i,
-                              verse.getString("$v"),
-                              versearabik.getString("verse_$v")
-                          )
-                          Log.d(
-                              "ayat",
-                           v.toString()
-                          )*/
                     var ayat = Verse(
                         v.toString(), verse.getString("$v"),
                         versearabik.getString("verse_$v")
@@ -111,6 +97,7 @@ object Common : AppCompatActivity() {
             }
 
         }
+
 
         return globalSearchResultList
     }

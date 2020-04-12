@@ -17,8 +17,9 @@ import com.example.quranua.SuraDetails.SuraDetailsFragment
 import java.util.*
 import kotlin.collections.ArrayList
 
-open class BookMarkAdapter(var bookmark: ArrayList<Bookmark>, var context: Context, var  activity: FragmentActivity?) :
+open class BookMarkAdapter(var bookmark: ArrayList<Bookmark>, var context: Context, var activity: FragmentActivity?) :
     RecyclerView.Adapter<BookmarkViewHolder>() {
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BookmarkViewHolder {
         var view = LayoutInflater.from(context).inflate(R.layout.bookmark_item2, parent, false)
         return BookmarkViewHolder(view)
@@ -30,22 +31,23 @@ open class BookMarkAdapter(var bookmark: ArrayList<Bookmark>, var context: Conte
 
     override fun onBindViewHolder(holder: BookmarkViewHolder, position: Int) {
         holder.suraname.text = bookmark[position].suraname
-        holder.ukr.text="${bookmark[position].translation} - аят №${bookmark[position].ayanumber} "
-        holder.date.text="${Date().day}"
+        holder.ukr.text = "${bookmark[position].translation} - аят №${bookmark[position].ayanumber} "
+        holder.date.text = "${Date().day}"
         holder.bookmarkbutton.setOnClickListener {
-            var db=Database(context)
+            var db = Database(context)
             db.deleteData(position)
             bookmark.remove(bookmark[position])
+
             notifyDataSetChanged()
         }
-holder.bookmarkLayout.setOnClickListener {
-    var bundle= Bundle()
-    bundle.putInt("pos", bookmark[position].suraIndex!!)
-    bundle.putInt("suranumb",bookmark[position].suraNumber!!)
-    var fragment=SuraDetailsFragment()
-    fragment.arguments=bundle
-    var basefr=BaseFragment().getFragment(fragment,R.id.fragment_content,activity as AppCompatActivity)
-}
+        holder.bookmarkLayout.setOnClickListener {
+            var bundle = Bundle()
+            bundle.putInt("pos", bookmark[position].suraIndex!!)
+            bundle.putInt("suranumb", bookmark[position].suraNumber!!)
+            var fragment = SuraDetailsFragment()
+            fragment.arguments = bundle
+            var basefr = BaseFragment().getFragment(fragment, R.id.fragment_content, activity as AppCompatActivity)
+        }
 
 
     }

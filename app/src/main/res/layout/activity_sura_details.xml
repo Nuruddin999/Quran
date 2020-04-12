@@ -21,22 +21,6 @@
         />
     </LinearLayout>
 
-    <TextView
-            android:id="@+id/sura_details_suraname_english"
-            android:layout_width="wrap_content" android:layout_height="wrap_content"
-    android:layout_gravity="center"/>
-    <TextView
-            android:id="@+id/sura_details_suraname_russian"
-            android:layout_width="wrap_content" android:layout_height="wrap_content"
-            android:layout_gravity="center"/>
-    <TextView
-            android:id="@+id/sura_details_bismi_arabik"
-            android:layout_width="wrap_content" android:layout_height="wrap_content"
-            android:layout_gravity="center"/>
-    <TextView
-            android:id="@+id/sura_details_bismi_ukr"
-            android:layout_width="wrap_content" android:layout_height="wrap_content"
-            android:layout_gravity="center"/>
     <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/sura_details_list"
             android:layout_width="match_parent"

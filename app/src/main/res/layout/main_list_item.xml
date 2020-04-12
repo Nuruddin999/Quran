@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:id="@+id/main_list_item_layout"
                 android:orientation="horizontal"
@@ -8,6 +9,7 @@
 android:padding="13dp"
 
 android:clickable="true">
+
     <TextView
             android:id="@+id/main_list_item_indexsura"
             android:layout_width="wrap_content" android:layout_height="wrap_content"
