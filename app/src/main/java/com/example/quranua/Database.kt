@@ -73,9 +73,9 @@ class Database (var context: Context) : SQLiteOpenHelper(context, DBNAME, null, 
         return list
 
     }
-    fun deleteData(index: Int) {
+    fun deleteData(index: Int,loved: String,ayatukr:String) {
         val db = this.writableDatabase
-        val query = "delete  from " + TABLE_NAME + " where " + COL_IND + "=" + "'" + index + "'"
+        val query = "delete  from $TABLE_NAME where $COL_IND='$index' and $COL_LOVED='$loved'  and $COL_AYAUKR='$ayatukr'"
         val result = db.execSQL(query)
     }
 

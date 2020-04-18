@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.quranua.BaseFragment
+import com.example.quranua.Database
 import com.example.quranua.Model.Bookmark
 import com.example.quranua.R
 import com.example.quranua.SuraDetails.SuraDetailsFragment
@@ -40,5 +41,12 @@ holder.suraheader.text=bookmark[position].suraname
             fragment.arguments=bundle
             var basefr= BaseFragment().getFragment(fragment,R.id.fragment_content,activity as AppCompatActivity)
         }
+    }
+    fun removeAt(position: Int) {
+        var database= Database(context!!)
+        database.deleteData(bookmark[position].suraIndex!!,bookmark[position].loved!!,bookmark[position].ukr!!)
+
+        bookmark.removeAt(position)
+        notifyItemRemoved(position)
     }
 }

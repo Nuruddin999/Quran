@@ -62,13 +62,14 @@ android:padding="12dp">
                     android:textSize="18sp"
                     />
             <TextView
-                    android:text="arab"
                     android:id="@+id/sura_details_item_aya_arabic"
                     android:layout_width="match_parent" android:layout_height="wrap_content"
-android:paddingTop="10dp"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
+                    android:paddingTop="10dp"
                     android:paddingBottom="10dp"
+                    android:text="arab"
+                    android:fontFamily="@font/arabikfont"
+                    android:textSize="20sp"
+
             />
         </LinearLayout>
 

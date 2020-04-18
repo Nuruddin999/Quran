@@ -18,9 +18,9 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 open class BookMarkAdapter(var bookmark: ArrayList<Bookmark>, var context: Context, var activity: FragmentActivity?) :
-    RecyclerView.Adapter<BookmarkViewHolder>() {
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BookmarkViewHolder {
+    RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+    var db = Database(context)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         var view = LayoutInflater.from(context).inflate(R.layout.bookmark_item2, parent, false)
         return BookmarkViewHolder(view)
     }
@@ -29,13 +29,14 @@ open class BookMarkAdapter(var bookmark: ArrayList<Bookmark>, var context: Conte
         return bookmark.size
     }
 
-    override fun onBindViewHolder(holder: BookmarkViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        var holder=holder as BookmarkViewHolder
         holder.suraname.text = bookmark[position].suraname
         holder.ukr.text = "${bookmark[position].translation} - аят №${bookmark[position].ayanumber} "
         holder.date.text = "${Date().day}"
         holder.bookmarkbutton.setOnClickListener {
-            var db = Database(context)
-            db.deleteData(position)
+
+            db.deleteData(position,"no",bookmark[position].ukr!!)
             bookmark.remove(bookmark[position])
 
             notifyDataSetChanged()
@@ -50,5 +51,10 @@ open class BookMarkAdapter(var bookmark: ArrayList<Bookmark>, var context: Conte
         }
 
 
+    }
+    fun removeAt(position: Int) {
+        db.deleteData(bookmark[position].suraIndex!!,bookmark[position].loved!!,bookmark[position].ukr!!)
+        bookmark.removeAt(position)
+        notifyItemRemoved(position)
     }
 }

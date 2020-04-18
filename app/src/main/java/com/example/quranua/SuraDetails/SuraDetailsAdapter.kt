@@ -57,6 +57,7 @@ open class SuraDetailsAdapter(
 
         val sharedPref = context.getSharedPreferences("settings", Context.MODE_PRIVATE)
         var set = sharedPref.getBoolean("Arabictext", false)
+
         when(holder.itemViewType){
             1->{
                 var searchViewholder:SearchViewholder= holder as SearchViewholder
@@ -78,15 +79,18 @@ open class SuraDetailsAdapter(
                 if (!sharedPref.contains("Arabictext")) {
                     holder.ayaarabik.visibility = View.GONE
                 }
-                if (!sharedPref.contains("Textsize")) {
-                    holder.ayaarabik.textSize=sharedPref.getInt("Textsize",12).toFloat()
-                    holder.ayaukr.textSize=sharedPref.getInt("Textsize",12).toFloat()
+                if (!sharedPref.contains("Ukrtext")) {
+                    holder.ayaukr.visibility = View.GONE
                 }
-
                 holder.contextmenu.setBackgroundColor(Color.BLUE)
                 holder.ayanumber.text = verse.ayaindex
                 holder.ayaukr.text = " ${verse.ayaukr}"
                 holder.ayaarabik.text = "${verse.ayaarab}"
+                if (sharedPref.contains("Textsize")) {
+
+                    holder.ayaarabik.textSize=sharedPref.getInt("Textsize",12).toFloat()+15
+                    holder.ayaukr.textSize=sharedPref.getInt("Textsize",12).toFloat()
+                }
                 holder.container.setOnClickListener {
                     if (    holder.contextmenu.visibility == RelativeLayout.VISIBLE){
                         holder.contextmenu.visibility = RelativeLayout.GONE

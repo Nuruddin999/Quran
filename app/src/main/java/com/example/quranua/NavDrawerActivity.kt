@@ -25,6 +25,7 @@ import java.util.ArrayList
 
 open class NavDrawerActivity : AppCompatActivity(),
     NavigationView.OnNavigationItemSelectedListener {
+
     override fun onNavigationItemSelected(p0: MenuItem): Boolean {
         return false
     }
@@ -50,14 +51,16 @@ open class NavDrawerActivity : AppCompatActivity(),
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_nav_drawer)
         val toolbar: Toolbar = findViewById(R.id.toolbar)
-
         setSupportActionBar(toolbar)
+var actionBar=supportActionBar
+        actionBar!!.setHomeButtonEnabled(true)
+        actionBar!!.setDisplayHomeAsUpEnabled(true)
         title="Коран"
         myContext = this
         var fragment = ListFragment()
         var baseFragment = BaseFragment().getFragment(fragment, R.id.fragment_content, this)
         val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
-        val navView: NavigationView = findViewById(R.id.nav_view)
+         val navView: NavigationView = findViewById(R.id.nav_view)
         val toggle = ActionBarDrawerToggle(
             this,
             drawerLayout,

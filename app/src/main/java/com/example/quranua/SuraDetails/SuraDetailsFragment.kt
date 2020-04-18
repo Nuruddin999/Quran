@@ -3,9 +3,7 @@ package com.example.quranua.SuraDetails
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
@@ -18,6 +16,7 @@ import com.example.quranua.Model.Sura
 import com.example.quranua.Model.Verse
 import com.example.quranua.NavDrawerActivity
 import com.example.quranua.R
+import kotlinx.android.synthetic.main.app_bar_nav_drawer.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -38,7 +37,10 @@ open class SuraDetailsFragment : BaseFragment() {
         suras = get()
         // Dispatchers.Main
     }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        activity?.title = "Коран"
+
         var view = inflater.inflate(R.layout.activity_sura_details, container, false)
         recyclerView = view.findViewById(R.id.sura_details_list)
         layoutManager = LinearLayoutManager(context)
@@ -66,4 +68,5 @@ open class SuraDetailsFragment : BaseFragment() {
         }
         return view
     }
+
 }

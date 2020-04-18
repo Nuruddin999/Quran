@@ -1,5 +1,6 @@
 package com.example.quranua.GLobalSearch
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -10,7 +11,9 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.quranua.Model.GlobalSearchResult
+import com.example.quranua.NavDrawerActivity
 import com.example.quranua.R
+import kotlinx.android.synthetic.main.activity_global_search.*
 import kotlinx.coroutines.*
 import java.util.ArrayList
 import kotlin.coroutines.CoroutineContext
@@ -34,6 +37,10 @@ class GlobalSearchActivity : AppCompatActivity(), CoroutineScope {
         val toolbar: Toolbar = findViewById(R.id.globalsearchtoolbar)
         setSupportActionBar(toolbar)
         var searchfield: SearchView = findViewById(R.id.foundsurassearchfield)
+        cancelsearch.setOnClickListener {
+            var intent = Intent(this, NavDrawerActivity::class.java)
+           startActivity(intent)
+        }
         var recyclerView: RecyclerView = findViewById(R.id.foundsuraslist)
         var layoutManager = LinearLayoutManager(this)
         recyclerView.layoutManager = layoutManager
