@@ -1,6 +1,7 @@
 package com.example.quranua.Loved
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -11,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.quranua.BaseFragment
 import com.example.quranua.Database
 import com.example.quranua.Model.Bookmark
+import com.example.quranua.NewSuraDetailed
 import com.example.quranua.R
 import com.example.quranua.SuraDetails.SuraDetailsFragment
 
@@ -34,12 +36,11 @@ holder.suraheader.text=bookmark[position].suraname
         holder.ayaukr.text= bookmark[position].ukr
         holder.ayaarabik.text=bookmark[position].arab
         holder.container.setOnClickListener {
-            var bundle= Bundle()
-            bundle.putInt("pos", bookmark[position].suraIndex!!)
-            bundle.putInt("suranumb",bookmark[position].suraNumber!!)
-            var fragment= SuraDetailsFragment()
-            fragment.arguments=bundle
-            var basefr= BaseFragment().getFragment(fragment,R.id.fragment_content,activity as AppCompatActivity)
+            var intent= Intent(context, NewSuraDetailed::class.java)
+            intent.putExtra("pos", bookmark[position].suraIndex!!)
+            intent.putExtra("suranumb", bookmark[position].suraNumber!!)
+            context.startActivity(intent)
+
         }
     }
     fun removeAt(position: Int) {

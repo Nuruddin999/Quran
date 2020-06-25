@@ -9,13 +9,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat.startActivity
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
-import com.example.quranua.BaseFragment
+import com.example.quranua.*
 import com.example.quranua.GLobalSearch.GlobalSearchActivity
 
-import com.example.quranua.MainActivity
 import com.example.quranua.Model.Sura
-import com.example.quranua.R
-import com.example.quranua.SearchViewholder
 import com.example.quranua.SuraDetails.SuraDetailsFragment
 
 open class MainListAdapter(
@@ -59,12 +56,15 @@ when(holder.itemViewType){
         holder.suraindex.text = "${sura.suraindex.toString()}."
         holder.downloadicon.setImageResource(R.drawable.cloud_computing_2x)
         holder.mainlistlayout.setOnClickListener {
-            var fragment = SuraDetailsFragment()
+            var intent = Intent(context, NewSuraDetailed::class.java)
+            intent.putExtra("suranumb", sura.suraindex!!)
+            context.startActivity(intent)
+       /*     var fragment = SuraDetailsFragment()
             var bundle = Bundle()
             bundle.putInt("suranumb", sura.suraindex!!)
             fragment.arguments = bundle
             BaseFragment().getFragment(fragment, R.id.fragment_content, activity as AppCompatActivity)
-
+*/
         }
     }
 }

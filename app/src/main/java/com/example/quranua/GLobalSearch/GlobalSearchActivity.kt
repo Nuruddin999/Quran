@@ -4,6 +4,8 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import androidx.appcompat.widget.SearchView
 import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.Observer
@@ -25,16 +27,18 @@ class GlobalSearchActivity : AppCompatActivity(), CoroutineScope {
     override fun onCreate(savedInstanceState: Bundle?) {
         var searchLogic = SearchLogic(this)
         var resultList=ArrayList<GlobalSearchResult>()
+
+
         CoroutineScope(Dispatchers.IO).launch {
             val result = searchLogic.allAyats/*.await()*/
             withContext(Dispatchers.Main) {
                 resultList= result!!
             }}
-        var adapter = ResultsAdapter(this)
+        var adapter = ResultsAdapter(this,this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_global_search)
         model = ViewModelProviders.of(this).get(ResultViewModel::class.java)
-        val toolbar: Toolbar = findViewById(R.id.globalsearchtoolbar)
+       val toolbar: Toolbar = findViewById(R.id.globalsearchtoolbar)
         setSupportActionBar(toolbar)
         var searchfield: SearchView = findViewById(R.id.foundsurassearchfield)
         cancelsearch.setOnClickListener {
@@ -75,6 +79,27 @@ class GlobalSearchActivity : AppCompatActivity(), CoroutineScope {
         })
     }
 
+    override fun onBackPressed() {
+        var intent = Intent(this, NavDrawerActivity::class.java)
+        startActivity(intent)
+        super.onBackPressed()
+    }
+    override fun onNavigateUp(): Boolean {
+        var intent = Intent(this, NavDrawerActivity::class.java)
+        startActivity(intent)
+        return super.onNavigateUp()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        return true
+    }
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        if (item!!.itemId==android.R.id.home){
+            var intent = Intent(this, NavDrawerActivity::class.java)
+            startActivity(intent)
+        }
+        return super.onOptionsItemSelected(item)
+    }
 }
 
 

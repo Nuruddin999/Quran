@@ -7,5 +7,6 @@ class GlobalSearchResult(
     var suraName: String = "",
     var suraTranslation: String = "",
     var suraIndex: String = "",
-    var ayatCount: String = ""
+    var ayatCount: String = "",
+    var suraNumber: String = ""
 )

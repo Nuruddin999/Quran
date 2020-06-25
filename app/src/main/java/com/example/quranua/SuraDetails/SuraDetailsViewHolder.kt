@@ -14,6 +14,7 @@ open class SuraDetailsViewHolder(itemview: View):androidx.recyclerview.widget.Re
     var ayanumber:TextView=itemview.findViewById(R.id.sura_details_item_aya_number)
     var suraheader:TextView=itemview.findViewById(R.id.suraheader)
     var share: ImageView =itemview.findViewById(R.id.sura_details_item_context_menu_share)
+    var web:ImageView=itemview.findViewById(R.id.sura_details_item_context_menu_loved)
     var container:LinearLayout=itemview.findViewById(R.id.sura_details_container)
     var contextmenu: RelativeLayout =itemview.findViewById(R.id.sura_details_item_context_menu_block)
 

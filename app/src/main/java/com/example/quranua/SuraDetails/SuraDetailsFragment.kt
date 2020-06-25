@@ -5,8 +5,11 @@ import android.os.Bundle
 import android.util.Log
 import android.view.*
 import android.widget.EditText
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.core.view.GravityCompat
+import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.quranua.BaseFragment
@@ -27,6 +30,7 @@ import kotlin.coroutines.CoroutineContext
 import kotlin.math.log
 
 open class SuraDetailsFragment : BaseFragment() {
+
     var suras = ArrayList<Sura>()
     open var adapter: SuraDetailsAdapter? = null
     suspend fun get() = withContext(Dispatchers.IO) {
@@ -39,8 +43,6 @@ open class SuraDetailsFragment : BaseFragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        activity?.title = "Коран"
-
         var view = inflater.inflate(R.layout.activity_sura_details, container, false)
         recyclerView = view.findViewById(R.id.sura_details_list)
         layoutManager = LinearLayoutManager(context)
@@ -68,5 +70,8 @@ open class SuraDetailsFragment : BaseFragment() {
         }
         return view
     }
+
+
+
 
 }

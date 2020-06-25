@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView android:layout_width="match_parent" xmlns:android="http://schemas.android.com/apk/res/android"  android:layout_height="match_parent">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:tools="http://schemas.android.com/tools"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             android:orientation="vertical"
+             tools:context=".AboutUsFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <ImageView android:layout_width="200dp" android:layout_height="wrap_content" android:src="@drawable/calligraphy_quranbig"
+    android:layout_gravity="center"
+    android:layout_marginTop="25dp"/>
+    <TextView android:id="@+id/aboutush1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/aboush1"
+    android:textAlignment="center"
+              android:textSize="20sp"
+    android:layout_marginTop="25dp"/>
+    <TextView android:id="@+id/aboutustext"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_margin="10dp"
+              android:layout_marginTop="25dp"
+              android:fontFamily="@font/latolight"
+              android:text="@string/aboutus"
+              android:textSize="17sp"/>
+<RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+android:background="@drawable/borderback"
+android:paddingBottom="15dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp">
+    <TextView
+            android:id="@+id/aboutusweb"
+            android:layout_width="wrap_content" android:layout_height="match_parent"
+    android:text="Наш сайт"
+    android:textSize="20sp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentStart="true"
+    android:layout_marginBottom="15dp"/>
+    <TextView
+            android:id="@+id/aboutuswebname"
+            android:layout_width="wrap_content" android:layout_height="match_parent"
+            android:text="lifeislam.org"
+            android:textSize="17sp"
+            android:clickable="true"
+            android:layout_centerVertical="true"
+            android:layout_marginBottom="15dp"
+            android:layout_alignParentEnd="true" android:focusable="true"/>
+</RelativeLayout>
+    <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:background="@drawable/borderback"
+                    android:paddingBottom="15dp"
+                    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp">
+        <TextView
+                android:id="@+id/aboutusfacebook"
+                android:layout_width="wrap_content" android:layout_height="match_parent"
+                android:text="Facebook"
+                android:textSize="20sp"
+                android:layout_centerVertical="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginBottom="15dp"/>
+        <TextView
+                android:id="@+id/aboutusfacebookname"
+                android:layout_width="wrap_content" android:layout_height="match_parent"
+                android:text="amulifeislam"
+                android:textSize="17sp"
+                android:clickable="true"
+                android:layout_centerVertical="true"
+                android:layout_marginBottom="15dp"
+                android:layout_alignParentEnd="true" android:focusable="true"/>
+    </RelativeLayout>
+    <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:background="@drawable/borderback"
+                    android:paddingBottom="15dp"
+                    android:layout_marginHorizontal="10dp">
+        <TextView
+                android:id="@+id/aboutusyoutube"
+                android:layout_width="wrap_content" android:layout_height="match_parent"
+                android:text="Youtube"
+                android:textSize="20sp"
+                android:layout_centerVertical="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginBottom="15dp"/>
+        <TextView
+                android:id="@+id/aboutusyoutubename"
+                android:layout_width="wrap_content" android:layout_height="match_parent"
+                android:text="/amulifeislam"
+                android:textSize="17sp"
+                android:clickable="true"
+                android:layout_centerVertical="true"
+                android:layout_marginBottom="15dp"
+                android:layout_alignParentEnd="true" android:focusable="true"/>
+    </RelativeLayout>
+    <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:background="@drawable/borderback"
+                    android:paddingBottom="15dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp">
+        <TextView
+                android:id="@+id/aboutusinsta"
+                android:layout_width="wrap_content" android:layout_height="match_parent"
+                android:text="Instagram"
+                android:textSize="20sp"
+                android:layout_centerVertical="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginBottom="15dp"/>
+        <TextView
+                android:id="@+id/aboutusinstaname"
+                android:layout_width="wrap_content" android:layout_height="match_parent"
+                android:text="lifeislam"
+                android:textSize="17sp"
+                android:layout_centerVertical="true"
+                android:layout_marginBottom="15dp"
+                android:clickable="true"
+                android:layout_alignParentEnd="true" android:focusable="true"/>
+    </RelativeLayout>
+</LinearLayout>
+</ScrollView>

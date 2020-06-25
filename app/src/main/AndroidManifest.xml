@@ -9,9 +9,11 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
-        <activity android:name=".GLobalSearch.GlobalSearchActivity"
-                  android:theme="@style/AppTheme.NoActionBar"
-      >
+        <activity android:name=".NewSuraDetailed" android:parentActivityName=".NavDrawerActivity">
+        </activity>
+        <activity
+                android:name=".GLobalSearch.GlobalSearchActivity"
+                android:theme="@style/AppTheme.NoActionBar">
         </activity>
         <activity
                 android:name=".NavDrawerActivity"

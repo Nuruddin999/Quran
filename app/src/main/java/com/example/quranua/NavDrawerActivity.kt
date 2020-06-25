@@ -3,16 +3,17 @@ package com.example.quranua
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.Gravity
 import androidx.core.view.GravityCompat
 import androidx.appcompat.app.ActionBarDrawerToggle
 import android.view.MenuItem
+import android.view.View
 import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.navigation.NavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
-import android.widget.EditText
-import android.widget.LinearLayout
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import com.example.quranua.Bookmark.BookmarkFragment
 import com.example.quranua.GLobalSearch.GlobalSearchActivity
 import com.example.quranua.Loved.LovedListFragment
@@ -22,11 +23,23 @@ import kotlinx.android.synthetic.main.activity_nav_drawer.*
 import kotlinx.coroutines.*
 import kotlinx.coroutines.Dispatchers.Main
 import java.util.ArrayList
+import androidx.core.app.ComponentActivity
+import androidx.core.app.ComponentActivity.ExtraData
+import androidx.core.content.ContextCompat.getSystemService
+import android.icu.lang.UCharacter.GraphemeClusterBreak.T
+import android.util.Log
+import android.view.Menu
+import android.widget.*
+
 
 open class NavDrawerActivity : AppCompatActivity(),
     NavigationView.OnNavigationItemSelectedListener {
-
+    private var toggle: ActionBarDrawerToggle? = null
+    private var drawerLayout: DrawerLayout? = null
+    private var navView: NavigationView? = null
+    private var fragmentManager: FragmentManager? = null
     override fun onNavigationItemSelected(p0: MenuItem): Boolean {
+
         return false
     }
 
@@ -52,58 +65,98 @@ open class NavDrawerActivity : AppCompatActivity(),
         setContentView(R.layout.activity_nav_drawer)
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
-var actionBar=supportActionBar
+        var actnbtn: ImageView = toolbar.findViewById(R.id.actnbtn)
+        var fragtitle:TextView=toolbar.findViewById(R.id.fragmenttitle)
+        fragtitle.text="Коран"
+        actnbtn.visibility = ImageView.GONE
+        var actionBar = supportActionBar
         actionBar!!.setHomeButtonEnabled(true)
-        actionBar!!.setDisplayHomeAsUpEnabled(true)
-        title="Коран"
+        actionBar!!.setDisplayShowHomeEnabled(true)
         myContext = this
+        fragmentManager = supportFragmentManager
         var fragment = ListFragment()
-        var baseFragment = BaseFragment().getFragment(fragment, R.id.fragment_content, this)
-        val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
-         val navView: NavigationView = findViewById(R.id.nav_view)
-        val toggle = ActionBarDrawerToggle(
+        changeFragment(fragment, R.id.fragment_content, false)
+        drawerLayout = findViewById(R.id.drawer_layout)
+        navView = findViewById(R.id.nav_view)
+        toggle = object : ActionBarDrawerToggle(
             this,
             drawerLayout,
             toolbar,
             R.string.navigation_drawer_open,
             R.string.navigation_drawer_close
-        )
-        drawerLayout.addDrawerListener(toggle)
-        toggle.syncState()
+        ) {
+            override fun onDrawerOpened(drawerView: View) {
+                super.onDrawerOpened(drawerView)
+            }
 
-        navView.setNavigationItemSelectedListener(this)
+            override fun onDrawerClosed(drawerView: View) {
+                super.onDrawerClosed(drawerView)
+            }
+        }
+        drawerLayout!!.addDrawerListener(toggle!!)
+
+
+        navView!!.setNavigationItemSelectedListener(this)
         quranItem.setOnClickListener {
-            openMenuItem(fragment,drawerLayout)
+            openMenuItem(fragment, drawerLayout!!)
         }
         lovedItem.setOnClickListener {
-            var fragment=LovedListFragment()
-          openMenuItem(fragment,drawerLayout)
+           LovedListFragment().also {
+                openMenuItem(it, drawerLayout!!)
+            }
         }
         bookmarksItem.setOnClickListener {
-            var fragment=BookmarkFragment()
-            openMenuItem(fragment,drawerLayout)
+            BookmarkFragment().also {
+                openMenuItem(it, drawerLayout!!)
+            }
         }
         settingsItem.setOnClickListener {
-            var fragment=SettingsFragment()
-            openMenuItem(fragment,drawerLayout)
+           SettingsFragment().also {
+                openMenuItem(it, drawerLayout!!)
+            }
+        }
+        mailItem.setOnClickListener {
+            AboutUsFragment().also {
+                openMenuItem(it,drawerLayout!!)
+            }
+        }
 
+    }
+
+    override fun onPostCreate(savedInstanceState: Bundle?) {
+        super.onPostCreate(savedInstanceState)
+        if (toggle !== null) {
+            toggle!!.syncState()
         }
     }
 
-    override fun onBackPressed() {
-        val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
-        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
-            drawerLayout.closeDrawer(GravityCompat.START)
-        } else {
-            super.onBackPressed()
-        }
+
+    fun openMenuItem(fragment: Fragment, drawerLayout: DrawerLayout) {
+        changeFragment(fragment, R.id.fragment_content, true)
+        drawerLayout.closeDrawer(GravityCompat.START)
+    }
+
+    fun changeFragment(fragment: Fragment, view: Int, addtobackstack: Boolean) {
+        var fragmentTransaction = fragmentManager!!.beginTransaction()
+        fragmentTransaction.replace(view, fragment)
+        if (addtobackstack) fragmentTransaction.addToBackStack("my")
+        fragmentTransaction.commit()
     }
 
 
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
 
- fun openMenuItem(fragment:Fragment,drawerLayout: DrawerLayout){
-     BaseFragment().getFragment(fragment, R.id.fragment_content, this)
-     drawerLayout.closeDrawer(GravityCompat.START)
- }
+        when (item!!.itemId) {
+            android.R.id.home -> {
+                //  onBackPressed()
+                Log.d("btn", "vf")
+                Toast.makeText(this, "DSFS", Toast.LENGTH_SHORT).show()
+                return true
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
+
 
 }

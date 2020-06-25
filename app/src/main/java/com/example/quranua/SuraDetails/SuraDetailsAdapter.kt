@@ -3,6 +3,7 @@ package com.example.quranua.SuraDetails
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
+import android.graphics.drawable.Drawable
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +11,7 @@ import android.view.ViewGroup
 import android.widget.RelativeLayout
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.quranua.Database
 import com.example.quranua.GLobalSearch.GlobalSearchActivity
@@ -33,11 +35,12 @@ open class SuraDetailsAdapter(
         }
 
     }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {
             1 -> {
                 var view = LayoutInflater.from(context).inflate(R.layout.search_field, parent, false)
-                SearchViewholder (view)
+                SearchViewholder(view)
             }
             2 -> {
                 var view = LayoutInflater.from(context).inflate(R.layout.start_suradetails_layout, parent, false)
@@ -45,54 +48,57 @@ open class SuraDetailsAdapter(
             }
             else -> {
                 var view = LayoutInflater.from(context).inflate(R.layout.sura_details_item, parent, false)
-                return SuraDetailsViewHolder(view) }
+                return SuraDetailsViewHolder(view)
+            }
         }
     }
 
     override fun getItemCount(): Int {
-        return list.size+2
+        return list.size + 2
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-
+        var bookmarkseected = false
+        var favoriteselected = false
         val sharedPref = context.getSharedPreferences("settings", Context.MODE_PRIVATE)
         var set = sharedPref.getBoolean("Arabictext", false)
 
-        when(holder.itemViewType){
-            1->{
-                var searchViewholder:SearchViewholder= holder as SearchViewholder
+        when (holder.itemViewType) {
+            1 -> {
+                var searchViewholder: SearchViewholder = holder as SearchViewholder
                 searchViewholder.searchfield.setOnClickListener {
                     var intent = Intent(context, GlobalSearchActivity::class.java)
                     context.startActivity(intent)
                 }
             }
-            2->{
-                var holder:StartViewholder=holder as StartViewholder
-                holder.suratitle.text=sura.nameeng
-                holder.suratitleukr.text=sura.translation
-                holder.surabismi.text="Ім’ям Аллага Милостивого, Милосердного!"
-                holder.suratitlebismiarab.text="بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ"
+            2 -> {
+                var holder: StartViewholder = holder as StartViewholder
+                holder.suratitle.text = sura.nameeng
+                holder.suratitleukr.text = sura.translation
+                holder.surabismi.text = "Ім’ям Аллага Милостивого, Милосердного!"
+                holder.suratitlebismiarab.text = "بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ"
             }
-            3->{
-                var verse = list[position-2]
-                var holder:SuraDetailsViewHolder=holder as SuraDetailsViewHolder
-                if (!sharedPref.contains("Arabictext")) {
-                    holder.ayaarabik.visibility = View.GONE
-                }
-                if (!sharedPref.contains("Ukrtext")) {
-                    holder.ayaukr.visibility = View.GONE
-                }
-                holder.contextmenu.setBackgroundColor(Color.BLUE)
+            3 -> {
+                var verse = list[position - 2]
+                var holder: SuraDetailsViewHolder = holder as SuraDetailsViewHolder
                 holder.ayanumber.text = verse.ayaindex
                 holder.ayaukr.text = " ${verse.ayaukr}"
                 holder.ayaarabik.text = "${verse.ayaarab}"
+                if (!sharedPref.contains("Arabictext")) {
+                    holder.ayaarabik.visibility = View.GONE
+                }
+                if (sharedPref.contains("Ukrtext") && !sharedPref.getBoolean("Ukrtext",true)) {
+                    holder.ayaukr.visibility = View.GONE
+                }
+
+
                 if (sharedPref.contains("Textsize")) {
 
-                    holder.ayaarabik.textSize=sharedPref.getInt("Textsize",12).toFloat()+15
-                    holder.ayaukr.textSize=sharedPref.getInt("Textsize",12).toFloat()
+                    holder.ayaarabik.textSize = sharedPref.getInt("Textsize", 12).toFloat() + 15
+                    holder.ayaukr.textSize = sharedPref.getInt("Textsize", 12).toFloat()
                 }
                 holder.container.setOnClickListener {
-                    if (    holder.contextmenu.visibility == RelativeLayout.VISIBLE){
+                    if (holder.contextmenu.visibility == RelativeLayout.VISIBLE) {
                         holder.contextmenu.visibility = RelativeLayout.GONE
                         return@setOnClickListener
                     }
@@ -110,28 +116,58 @@ open class SuraDetailsAdapter(
                 holder.addbookmark.setOnClickListener {
                     Log.d("db", "${verse.ayaukr} ${verse.ayaarab}  ${verse.ayaindex} ")
 
-                    db.inserdata(
-                        sura.suraname!!,
-                        position,
-                        sura.suraindex!!,
-                        sura.translation!!,
-                        verse.ayaindex!!.toInt(),
-                        verse.ayaukr!!,
-                        verse.ayaarab!!,
-                        "no"
-                    )
+
+                    if (!bookmarkseected) {
+                        holder.addbookmark.setImageDrawable(
+                            ContextCompat.getDrawable(
+                                context,
+                                R.drawable.bookmarkselected
+                            )
+                        )
+                        db.inserdata(
+                            sura.suraname!!,
+                            position,
+                            sura.suraindex!!,
+                            sura.translation!!,
+                            verse.ayaindex!!.toInt(),
+                            verse.ayaukr!!,
+                            verse.ayaarab!!,
+                            "no"
+                        )
+                        bookmarkseected = true
+                    } else {
+                        db.deleteData(position, "no", verse.ayaukr!!)
+                        bookmarkseected = false
+                        holder.addbookmark.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.bookmark))
+
+                    }
+
                 }
                 holder.share.setOnClickListener {
-                    db.inserdata(
-                        sura.suraname!!,
-                        position,
-                        sura.suraindex!!,
-                        sura.translation!!,
-                        verse.ayaindex!!.toInt(),
-                        verse.ayaukr!!,
-                        verse.ayaarab!!,
-                        "yes"
-                    )
+                    if (!favoriteselected) {
+                        db.inserdata(
+                            sura.suraname!!,
+                            position,
+                            sura.suraindex!!,
+                            sura.translation!!,
+                            verse.ayaindex!!.toInt(),
+                            verse.ayaukr!!,
+                            verse.ayaarab!!,
+                            "yes"
+                        )
+                        holder.share.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.favoriteselectred))
+                        favoriteselected = true
+                    } else {
+                        db.deleteData(position, "yes", verse.ayaukr!!)
+                        favoriteselected=false
+                        holder.share.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.favoriteicon))
+                    }
+
+                }
+                holder.web.setOnClickListener {
+                    var intent=Intent(Intent.ACTION_SEND)
+                    intent.putExtra(Intent.EXTRA_TEXT,"${verse.ayaukr}\n#QuranUA")
+                    context.startActivity(Intent.createChooser(intent,"Выберете программу"))
                 }
             }
         }

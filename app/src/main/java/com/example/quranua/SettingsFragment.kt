@@ -77,24 +77,27 @@ class SettingsFragment : BaseFragment() {
 
             }
         }
-        var settingsukrtext:Switch=view.findViewById(R.id.settings_texttransfer)
-        if (sharedPref!!.contains("Ukrtext")) {
-            settingsukrtext.isChecked = true
-        }
-        settingsukrtext.setOnCheckedChangeListener{compoundButton, b ->
+        var settingsukrtext: Switch = view.findViewById(R.id.settings_texttransfer)
+
+
+        settingsukrtext.isChecked = sharedPref.getBoolean("Ukrtext", true)
+     
+
+        settingsukrtext.setOnCheckedChangeListener { compoundButton, b ->
             run {
                 with(sharedPref.edit()) {
                     if (b) {
                         putBoolean("Ukrtext", true)
                     } else {
-                        remove("Ukrtext")
+                        putBoolean("Ukrtext",false)
                     }
                     commit()
 
                 }
 
 
-            }}
+            }
+        }
         return view
 
     }

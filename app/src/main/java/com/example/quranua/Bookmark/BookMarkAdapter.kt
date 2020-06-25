@@ -1,18 +1,16 @@
 package com.example.quranua.Bookmark
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
-import com.example.quranua.BaseFragment
-import com.example.quranua.Database
-import com.example.quranua.MainActivity
+import com.example.quranua.*
 import com.example.quranua.Model.Bookmark
 import com.example.quranua.Model.Sura
-import com.example.quranua.R
 import com.example.quranua.SuraDetails.SuraDetailsFragment
 import java.util.*
 import kotlin.collections.ArrayList
@@ -42,12 +40,10 @@ open class BookMarkAdapter(var bookmark: ArrayList<Bookmark>, var context: Conte
             notifyDataSetChanged()
         }
         holder.bookmarkLayout.setOnClickListener {
-            var bundle = Bundle()
-            bundle.putInt("pos", bookmark[position].suraIndex!!)
-            bundle.putInt("suranumb", bookmark[position].suraNumber!!)
-            var fragment = SuraDetailsFragment()
-            fragment.arguments = bundle
-            var basefr = BaseFragment().getFragment(fragment, R.id.fragment_content, activity as AppCompatActivity)
+            var intent=Intent(context,NewSuraDetailed::class.java)
+            intent.putExtra("pos", bookmark[position].suraIndex!!)
+            intent.putExtra("suranumb", bookmark[position].suraNumber!!)
+            context.startActivity(intent)
         }
 
 
